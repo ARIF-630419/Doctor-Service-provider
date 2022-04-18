@@ -17,7 +17,7 @@ const Services = () => {
         { id: 6, name: "specialty laboratory ", description: "The specialty laboratory that does your DNA test", price: 1700, img: service6 },
     ]
     return (
-        <div className='container'>
+        <div className='container mt-5'>
             <h2 className=' text-primary text-center'>Our Service</h2>
             <div className='row'>
                 {
