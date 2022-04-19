@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
+
+
 const Register = () => {
     const nameRef = useRef('');
     const emailRef = useRef('');
@@ -17,6 +19,7 @@ const Register = () => {
     const navigateRegister = event => {
         navigate("/login");
     }
+
     return (
         <div className=' container w-50 mx-auto'>
             <h2 className=' text-primary text-center mt-2'>Please Register</h2>
