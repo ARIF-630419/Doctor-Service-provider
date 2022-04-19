@@ -1,7 +1,21 @@
-# Getting Started with Create React App
+# doctor-service-provider
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+feature for website
+* service
+* home
+* blogs
+* about
+* checkout
+
+## Technology use
+* React Router
+* React Bootstrap
+* Bootstrap
+* React useRef
+* React firebase hooks
 ## Available Scripts
 
 In the project directory, you can run:
