@@ -1,9 +1,13 @@
 import React, { useRef } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Toast } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const [
         signInWithEmailAndPassword,
@@ -24,11 +28,17 @@ const Login = () => {
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password);
     }
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(
+        auth
+    );
+    if (loading) {
+        return <Loading></Loading>
+    }
     let errorElement;
     if (error) {
         errorElement = <p className='text-danger'>Error: {error?.message}</p>
     }
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
     if (user) {
         navigate(from, { replace: true });
     }
@@ -38,8 +48,9 @@ const Login = () => {
     const resetPassword = async () => {
         const email = emailRef.current.value;
         await sendPasswordResetEmail(email);
-        alert('Sent email');
+        toast('Sent email');
     }
+
     return (
         <div className=' container w-50 mx-auto'>
             <h2 className=' text-primary text-center mt-2'>Please Login</h2>
@@ -62,9 +73,10 @@ const Login = () => {
             </Form>
             {errorElement}
             <p className='w-50 mx-auto d-block'>New to Doctor service ? <Link to="/register" className='text-primary pe-auto text-decoration-none' onClick={navigateRegister}>Please Register</Link></p>
-            <p className='w-50 mx-auto d-block'>Forget Password ? <Link to="/register" className='text-primary pe-auto text-decoration-none' onClick={resetPassword}>Reset Password</Link></p>
+            <p className='w-50 mx-auto d-block'>Forget Password ? <button className='text-primary pe-auto text-decoration-none btn btn-link' onClick={resetPassword}>Reset Password</button></p>
 
             <SocialLogin></SocialLogin>
+            <ToastContainer />
         </div>
     );
 };
