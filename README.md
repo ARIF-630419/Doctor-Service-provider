@@ -4,11 +4,11 @@
 
 
 feature for website
-* service
-* home
-* blogs
-* about
-* checkout
+* The user must login if he wants to checkout page.
+* If the user goes to the about menu, he will be able to see his profile.
+* If the user goes to the blogs menu, he will see some questions and answers.
+* This website has been authentication through firebase.
+* React toastify has been used to show error on this website.
 
 ## Technology use
 * React Router
